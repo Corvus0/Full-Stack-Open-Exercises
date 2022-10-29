@@ -1,0 +1,32 @@
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "number": "91-51-5641196"
+}
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Charles Babbage"
+}
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "test",
+    "number": "123"
+}
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "test",
+    "number": "123"
+}
