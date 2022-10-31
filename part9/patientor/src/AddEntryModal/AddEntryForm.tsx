@@ -76,8 +76,7 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
         const errors: {
           [field: string]: string | dischargeError | sickLeaveError;
         } = {};
-        errors.discharge = { date: "", criteria: "" };
-        errors.sickLeave = { startDate: "", endDate: "" };
+        console.log(errors);
         if (!values.description) {
           errors.description = requiredError;
         }
@@ -87,41 +86,34 @@ const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
         if (!values.specialist) {
           errors.specialist = requiredError;
         }
-        if (
-          values.type === EntryType.Hospital &&
-          values.discharge &&
-          !values.discharge.date
-        ) {
-          errors.discharge.date = requiredError;
+        if (values.type === EntryType.Hospital) {
+          const discharge = { date: "", criteria: "" };
+          if (values.discharge && !values.discharge.date) {
+            errors.discharge = { ...discharge, date: requiredError };
+          }
+          if (values.discharge && !values.discharge.criteria) {
+            errors.discharge = { ...discharge, criteria: requiredError };
+          }
         }
-        if (
-          values.type === EntryType.Hospital &&
-          values.discharge &&
-          !values.discharge.criteria
-        ) {
-          errors.discharge.criteria = requiredError;
-        }
-        if (
-          values.type === EntryType.OccupationalHealthcare &&
-          !values.employerName
-        ) {
-          errors.employerName = requiredError;
-        }
-        if (
-          values.type === EntryType.OccupationalHealthcare &&
-          values.sickLeave &&
-          values.sickLeave.startDate &&
-          !values.sickLeave.endDate
-        ) {
-          errors.sickLeave.endDate = requiredError;
-        }
-        if (
-          values.type === EntryType.OccupationalHealthcare &&
-          values.sickLeave &&
-          !values.sickLeave.startDate &&
-          values.sickLeave.endDate
-        ) {
-          errors.sickLeave.startDate = requiredError;
+        if (values.type === EntryType.OccupationalHealthcare) {
+          if (!values.employerName) {
+            errors.employerName = requiredError;
+          }
+          const sickLeave = { startDate: "", endDate: "" };
+          if (
+            values.sickLeave &&
+            values.sickLeave.startDate &&
+            !values.sickLeave.endDate
+          ) {
+            errors.sickLeave = { ...sickLeave, endDate: requiredError };
+          }
+          if (
+            values.sickLeave &&
+            !values.sickLeave.startDate &&
+            values.sickLeave.endDate
+          ) {
+            errors.sickLeave = { ...sickLeave, startDate: requiredError };
+          }
         }
         return errors;
       }}

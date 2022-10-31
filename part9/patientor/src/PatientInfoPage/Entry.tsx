@@ -2,7 +2,7 @@ import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import WorkIcon from "@mui/icons-material/Work";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Divider } from "@mui/material";
 import { Entry as EntryType, HealthCheckRating } from "../types";
 import { useStateValue } from "../state";
 
@@ -73,11 +73,21 @@ const EntryDetails: React.FC<{ entry: EntryType }> = ({ entry }) => {
 const Entry: React.FC<{ entry: EntryType }> = ({ entry }) => {
   const [{ diagnoses }] = useStateValue();
   return (
-    <Box m={1} p={1} sx={{ border: "1px dashed grey", borderRadius: "16px" }}>
-      <Typography align="left" variant="body2">
+    <Box
+      sx={{
+        boxShadow: 1,
+        borderRadius: 2,
+        m: 2,
+        p: 2,
+        minWidth: 300,
+        "&:hover": { boxShadow: 8 },
+      }}
+    >
+      <Typography align="left" variant="body1">
         {entry.date}
         <EntryDetails entry={entry} />
       </Typography>
+      <Divider />
       <Typography align="left" variant="body2">
         <em>{entry.description}</em>
       </Typography>

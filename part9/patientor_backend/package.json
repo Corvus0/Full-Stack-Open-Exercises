@@ -7,7 +7,11 @@
     "tsc": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "lint": "eslint --ext .ts .",
-    "start": "node build/index.js"
+    "start": "node build/src/index.js",
+    "build:full": "rm -rf build && rm -rf frontend && cd ../patientor/ && npm run build && cp -r build ../patientor_backend && cd ../patientor_backend && mv build frontend && npm run tsc",
+    "deploy": "flyctl deploy",
+    "deploy:full": "npm run build:full && npm run deploy",
+    "logs:prod": "flyctl logs"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +26,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "uuid": "^9.0.0"
   }
