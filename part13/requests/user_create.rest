@@ -1,0 +1,28 @@
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+    "username": "Not Tester",
+    "name": "Testest Testes"
+}
+
+###
+
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+    "username": "nottester@nottesting.com",
+    "name": "Testest Testes"
+}
+
+###
+
+PUT http://localhost:3001/api/users/nottester@nottesting.com
+Content-Type: application/json
+
+{
+    "username": "tester@testing.com"
+}
+
+###
